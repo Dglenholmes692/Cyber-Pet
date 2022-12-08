@@ -43,13 +43,69 @@ let pet = {
 }
 
 function checkCondition() {
-    if(pet.health >= 100){
+    if (pet.health >= 100){
+        pet.health = 100;
+    } 
+    if (pet.hunger <= 0){
+        pet.hunger = 0;
+    } 
+    if (pet.cleanliness <= 0) {
+        pet.cleanliness = 0;
+    }
+    if (pet.thirst >= 30){
+      image.src = "crying-cat.jpg"
+    }
+    if (pet.hunger > 20){
+        image.src = "angry-cat.jpg";
+    } 
+    if (pet.health >= 100){
         pet.health = 100;
     }
-    if (pet.hunger < 0){
-        pet.hunger = 0;
+    if (pet.happiness <= 30) {
+        image.src = "sad-cat.jpg";
     }
-    if(pet.thirst >= 100){
-        pet.thirst = 100;
+    if (pet.cleanliness >= 50) {
+        image.src = "loved-cat.jpg";
+    }
+    if (pet.happiness >= 50) {
+        image.src = "loved-cat.jpg";
+    }
+
+    if (pet.health <= 20) {
+        image.src = "sad-cat.jpg"
+    } 
+    else {
+        image.src = "happy-cat.jpg";
     }
 }
+
+function petData() {
+    health.textContent = `health: ${pet.health}`;
+    thirst.textContent = `thirst: ${pet.thirst}`;
+    hunger.textContent = `hunger: ${pet.hunger}`;
+    happiness.textContent = `happiness: ${pet.happiness}`;
+    cleanliness.textContent = `cleanliness: ${pet.cleanliness}`;
+}
+button.addEventListener("click", () => {
+    peth1.textContent = input.value
+    hide.style.display = "none"
+})
+
+feed.addEventListener("click", () => {
+    pet.feedPet();
+    checkCondition();
+    flag = true;
+    petData();
+});
+
+givedrink.addEventListener("click", () => {
+    pet.giveDrink();
+    checkCondition();
+    petData();
+});
+
+clean.addEventListener("click", () => {
+    pet.clean();
+    checkCondition();
+    petData();
+});
